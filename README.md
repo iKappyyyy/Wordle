@@ -1,12 +1,34 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Wordle App 🕹
 
-Currently, two official plugins are available:
+This is a Wordle Recreation App, it was mostly created to practice React & Github usage in projects.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features 🚀
 
-## Expanding the ESLint configuration
+- Fetches list of words from an api
+- Normal wordle features
+- Supports PC & Mobile
+- Supports typing from keyboard & on-screen keyboard
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tech Stack
+
+React, HTML, CSS, Javascript
+
+## API
+
+#### Get all items
+
+```http
+GET https://api.frontendexpert.io/api/fe/wordle-words
+```
+
+#### Returns an array of all words
+
+| Array[i] | Type     |
+| :-------- | :------- |
+| `Word` | `String` |
+
+## Author
+
+- [@iKappyyyy](https://www.github.com/ikappyyyy)
+
