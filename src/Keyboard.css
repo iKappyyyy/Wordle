@@ -1,0 +1,51 @@
+:root {
+  --key-bg: #818384;
+}
+
+#keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-inline: auto;
+  max-width: 500px;
+}
+
+.keyboard-line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.keyboard-line:nth-child(2) {
+  margin-inline: clamp(0.625rem, -1.0417rem + 8.3333vw, 1.875rem);
+}
+
+.keyboard-key {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--key-bg);
+  width: 0;
+  flex-grow: 1;
+  height: 55px;
+
+  color: white;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  border-radius: 5px;
+  user-select: none;
+}
+
+.keyboard-key:active {
+  opacity: 0.8;
+}
+
+.keyboard-key.big {
+  width: clamp(0.625rem, -1.0417rem + 8.3333vw, 1.875rem);
+  font-size: clamp(0.5rem, -0.1667rem + 3.3333vw, 0.875rem);;
+}
