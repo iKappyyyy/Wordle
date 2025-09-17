@@ -1,0 +1,13 @@
+:root {
+  --square-border-clr: #3a3a3c;
+}
+
+.board-square {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  aspect-ratio: 1 / 1;
+
+  border: 2px solid var(--square-border-clr);
+}

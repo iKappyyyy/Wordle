@@ -1,0 +1,6 @@
+.board-line {
+  display: flex;
+  margin-inline: auto;
+  gap: 5px;
+  width: 100%;
+}

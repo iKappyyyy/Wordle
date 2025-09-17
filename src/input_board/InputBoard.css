@@ -1,0 +1,14 @@
+:root {
+  --line-length: 5;
+}
+
+#input-board {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  max-width: calc(var(--line-length) * 50px + 40px);
+  margin-inline: auto;
+  margin-bottom: 10px;
+}

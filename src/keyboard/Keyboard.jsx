@@ -52,7 +52,7 @@ export function Keyboard({ setUserInput }) {
 
   return (
     <div id="keyboard">
-      {keyboardRows.map((row, i) => <Fragment key={i}>{row}</Fragment>)}
+      {keyboardRows}
     </div>
   );
 }
