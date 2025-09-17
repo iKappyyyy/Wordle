@@ -1,8 +1,9 @@
+import { Keyboard } from './Keyboard';
 import './App.css';
 
 function App() {
   return (
-    <div></div>
+    <Keyboard />
   );
 }
 
