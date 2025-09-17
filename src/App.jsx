@@ -1,10 +1,13 @@
+import { useState } from 'react';
 import { Keyboard } from './Keyboard';
 import './App.css';
 
 function App() {
+  const [userInput, setUserInput] = useState('');
   return (
     <>
-      <Keyboard />
+      {userInput}
+      <Keyboard setUserInput={setUserInput} />
     </>
   );
 }

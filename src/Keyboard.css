@@ -39,10 +39,11 @@
 
   border-radius: 5px;
   user-select: none;
+  transition: opacity 75ms;
 }
 
-.keyboard-key:active {
-  opacity: 0.8;
+.keyboard-key:active, .keyboard-key.active {
+  opacity: 0.7;
 }
 
 .keyboard-key.big {
