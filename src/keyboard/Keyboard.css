@@ -1,0 +1,7 @@
+#keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-inline: auto;
+  max-width: 500px;
+}

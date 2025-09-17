@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Keyboard } from './Keyboard';
+import { Keyboard } from './keyboard/Keyboard';
 import './App.css';
 
 function App() {

@@ -1,4 +1,5 @@
 import { Fragment, useEffect, useState } from 'react';
+import { KeyboardLine } from './KeyboardLine';
 import './Keyboard.css';
 
 const keyboardChars = [
@@ -12,36 +13,11 @@ export function Keyboard({ setUserInput }) {
 
   useEffect(() => {
     const rows = keyboardChars.map(line => {
-      const lineChars = line.split(' ');
-      return (
-        <div className="keyboard-line" key={line}>
-          {lineChars.map(char => {
-            return (
-              <div
-                key={char}
-                className={(char === 'Enter' || char === 'Delete') ? 'keyboard-key big' : 'keyboard-key'}
-                onClick={() => {
-                  if (/^[A-Z]$/.test(char)) {
-                    setUserInput(currentInput => currentInput + char);
-                  } else if (char === 'Backspace' || char === 'Delete') {
-                    setUserInput(currentInput => currentInput.slice(0, -1));
-                  } else if (char === 'Enter') {
-                    console.log('submit');
-                    setUserInput('');
-                  }
-                }}
-                data-key={char}
-              >
-                {char}
-              </div>
-            );
-          })}
-        </div>
-      );
+      return <KeyboardLine key={line} line={line} setUserInput={setUserInput} />;
     });
     setKeyboardRows(rows);
 
-    const handleKeyDownEvent = (event) => {
+    const handleKeyDownEvent = event => {
       const key = event.key.length === 1 ? event.key.toUpperCase() : event.key;
       const element = document.querySelector(`[data-key="${key}"]`);
       if (element) element.classList.add('active');
@@ -56,7 +32,7 @@ export function Keyboard({ setUserInput }) {
       }
     };
 
-    const handleKeyUpEvent = (event) => {
+    const handleKeyUpEvent = event => {
       let key = event.key === 'Backspace' ? 'Delete' : event.key;
       if (key.length === 1) key = key.toUpperCase();
 
