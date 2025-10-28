@@ -1,40 +1,63 @@
-import { Fragment, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { KeyboardLine } from './KeyboardLine';
+import { keyboardChars } from '../constants/keyboardConstants';
+import { wordLength, words, correctGuess } from '../constants/generalConstants';
 import './Keyboard.css';
 
-const keyboardChars = [
-  'Q W E R T Y U I O P',
-  'A S D F G H J K L',
-  'Enter Z X C V B N M Delete'
-];
-
-export function Keyboard({ setUserInput }) {
+export function Keyboard({ currentGuess, setCurrentGuess, guesses, setGuesses }) {
   const [keyboardRows, setKeyboardRows] = useState([]);
+  const [gameWon, setGameWon] = useState(false);
 
   useEffect(() => {
+    const submitWord = () => {
+      const newGuesses = [...guesses];
+      const currentGuessIndex = newGuesses.indexOf(null);
+      
+      if (currentGuess.length < wordLength || !words.includes(currentGuess.toUpperCase())) {
+        const currentLineElement = currentGuessIndex !== -1 ? document.getElementById(`input-line-${currentGuessIndex + 1}`) : null;
+        if (currentLineElement && !currentLineElement.classList.contains('active')) {
+          currentLineElement.classList.add('active');
+          setTimeout(() => {
+            currentLineElement.classList.remove('active');
+          }, 1000);
+        }
+        return;
+      }
+      if (currentGuessIndex !== -1) newGuesses[currentGuessIndex] = currentGuess;
+      if (currentGuess === correctGuess) setGameWon(true);
+      setCurrentGuess('');
+      setGuesses(newGuesses);
+    }
+
+    console.log(correctGuess);
     const rows = keyboardChars.map(line => {
-      return <KeyboardLine key={line} line={line} setUserInput={setUserInput} />;
+      return <KeyboardLine key={line} line={line} setCurrentGuess={setCurrentGuess} submitWord={submitWord} />;
     });
     setKeyboardRows(rows);
-
+    let keysPressed = [];
+    
     const handleKeyDownEvent = event => {
       const key = event.key.length === 1 ? event.key.toUpperCase() : event.key;
       const element = document.querySelector(`[data-key="${key}"]`);
       if (element) element.classList.add('active');
 
+      if (gameWon) return;
+      if (!keysPressed.includes(key)) keysPressed.push(key);
+
       if (/^[A-Z]$/.test(key)) {
-        setUserInput(currentInput => currentInput + key);
+        setCurrentGuess(previousGuess => previousGuess.length < wordLength ? previousGuess + key : previousGuess);
       } else if (key === 'Backspace' || key === 'Delete') {
-        setUserInput(currentInput => currentInput.slice(0, -1));
+        if (keysPressed.includes('Control')) setCurrentGuess('');
+        else setCurrentGuess(currentGuess => currentGuess.slice(0, -1));
       } else if (key === 'Enter') {
-        console.log('submit');
-        setUserInput('');
+        submitWord();
       }
     };
 
     const handleKeyUpEvent = event => {
       let key = event.key === 'Backspace' ? 'Delete' : event.key;
       if (key.length === 1) key = key.toUpperCase();
+      keysPressed = keysPressed.filter(currentKey => currentKey !== key);
 
       const element = document.querySelector(`[data-key="${key}"]`);
       if (element) element.classList.remove('active');
@@ -48,7 +71,7 @@ export function Keyboard({ setUserInput }) {
       window.removeEventListener('keydown', handleKeyDownEvent);
       window.removeEventListener('keyup', handleKeyUpEvent);
     };
-  }, []);
+  }, [currentGuess]);
 
   return (
     <div id="keyboard">

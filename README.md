@@ -1,34 +1,32 @@
 
-# Wordle App 🕹
+# Juventus Israel Layout Image Maker 2.0 ⚽
 
-This is a Wordle Recreation App, it was mostly created to practice React & Github usage in projects.
+This is an app designed for Juventus Israel to be able to mass produce team composition images for up-coming games with ease.
+
+Pick your players, background & teams, and go on your way!
+
+![Logo](https://ikappyyyy.github.io/projects/juvSoccerLayout/images/icon.png)
+
 
 ## Features 🚀
 
-- Fetches list of words from an api
-- Normal wordle features
+- Select players for the image
+- Choose a background from an abundance of pre-made custom images
+- Specify the opposing teams
+- Add the active coach to your image
 - Supports PC & Mobile
-- Supports typing from keyboard & on-screen keyboard
+- Content is all up to date
 
-## Tech Stack
+## Tech Stack ⚙
 
 React, HTML, CSS, Javascript
 
-## API
+## Feedback 📝
 
-#### Get all items
+If you have any feedback, please reach out to us at the Juventus Israel whatsapp/telegram group!
 
-```http
-GET https://api.frontendexpert.io/api/fe/wordle-words
-```
 
-#### Returns an array of all words
-
-| Array[i] | Type     |
-| :-------- | :------- |
-| `Word` | `String` |
-
-## Author
+## Author 🥇
 
 - [@iKappyyyy](https://www.github.com/ikappyyyy)
 

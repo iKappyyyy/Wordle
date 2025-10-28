@@ -1,24 +1,25 @@
-import { useEffect, useState } from 'react';
 import { BoardLine } from './BoardLine';
+import { guessesAmount } from '../constants/boardConstants';
 import './InputBoard.css';
 
-const GUESSES_AMOUNT = 6;
+export function InputBoard({ guesses, currentGuess }) {
+  const rows = [];
+  for (let i = 0; i < guessesAmount; i++) {
+    const currentGuessIndex = guesses.findIndex(guess => guess === null);
 
-export function InputBoard() {
-  const [boardRows, setBoardRows] = useState([]);
-  useEffect(() => {
-    const rows = [];
-    for (let i = 0; i < GUESSES_AMOUNT; i++) {
-      rows.push(
-        <BoardLine key={`board-line-${i}`} lineNumber={i + 1} />
-      );
-    }
-    setBoardRows(rows);
-  }, []);
+    rows.push(
+      <BoardLine
+        key={`board-line-${i}`}
+        guess={i === currentGuessIndex ? currentGuess : guesses[i]}
+        lineNumber={i + 1}
+        isCurrentGuess={i === currentGuessIndex}
+      />
+    );
+  }
 
   return (
     <div id="input-board">
-      {boardRows}
+      {rows}
     </div>
   );
 }

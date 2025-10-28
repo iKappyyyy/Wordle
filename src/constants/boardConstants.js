@@ -1,0 +1,1 @@
+export const guessesAmount = 6;

@@ -4,3 +4,12 @@
   gap: 5px;
   width: 100%;
 }
+
+.board-line.active {
+  animation: line-shake 75ms ease-in-out 5 alternate;
+}
+
+@keyframes line-shake {
+  from { transform: translateX(-3px); }
+  to { transform: translateX(3px); }
+}
