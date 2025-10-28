@@ -1,10 +1,10 @@
 import { wordLength } from '../constants/generalConstants';
 import './KeyboardKey.css';
 
-export function KeyboardKey({ char, setCurrentGuess, submitWord }) {
+export function KeyboardKey({ char, setCurrentGuess, submitWord, position }) {
   return (
     <div
-      className={(char === 'Enter' || char === 'Delete') ? 'keyboard-key big' : 'keyboard-key'}
+      className={(char === 'Enter' || char === 'Delete') ? `keyboard-key big ${position}` : `keyboard-key ${position}`}
       onClick={() => {
         if (char === 'Enter') {
           submitWord();

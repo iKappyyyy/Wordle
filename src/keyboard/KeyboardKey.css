@@ -31,3 +31,15 @@
   width: clamp(0.625rem, -1.0417rem + 8.3333vw, 1.875rem);
   font-size: clamp(0.5rem, -0.1667rem + 3.3333vw, 0.875rem);;
 }
+
+.keyboard-key.correct {
+  background-color: var(--correct-clr);
+}
+
+.keyboard-key.misplaced {
+  background-color: var(--misplaced-clr);
+}
+
+.keyboard-key.incorrect {
+  background-color: var(--incorrect-clr);
+}

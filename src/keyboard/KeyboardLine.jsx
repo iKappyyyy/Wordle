@@ -1,7 +1,7 @@
 import { KeyboardKey } from './KeyboardKey';
 import './KeyboardLine.css';
 
-export function KeyboardLine({ line, setCurrentGuess, submitWord }) {
+export function KeyboardLine({ line, setCurrentGuess, submitWord, guesses, keyboardColors }) {
   const lineChars = line.split(' ');
   return (
     <div className="keyboard-line">
@@ -12,6 +12,8 @@ export function KeyboardLine({ line, setCurrentGuess, submitWord }) {
             char={char}
             setCurrentGuess={setCurrentGuess}
             submitWord={submitWord}
+            guesses={guesses.filter(guess => guess !== null)}
+            position={keyboardColors[char] || ''}
           />
         );
       })}

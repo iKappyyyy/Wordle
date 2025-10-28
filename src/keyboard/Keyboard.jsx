@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { KeyboardLine } from './KeyboardLine';
 import { keyboardChars } from '../constants/keyboardConstants';
-import { wordLength, words, correctGuess } from '../constants/generalConstants';
+import { wordLength } from '../constants/generalConstants';
 import './Keyboard.css';
 
-export function Keyboard({ currentGuess, setCurrentGuess, guesses, setGuesses }) {
+export function Keyboard({ currentGuess, setCurrentGuess, guesses, setGuesses, wordList, correctGuess, keyboardColors }) {
   const [keyboardRows, setKeyboardRows] = useState([]);
   const [gameWon, setGameWon] = useState(false);
 
@@ -12,8 +12,8 @@ export function Keyboard({ currentGuess, setCurrentGuess, guesses, setGuesses })
     const submitWord = () => {
       const newGuesses = [...guesses];
       const currentGuessIndex = newGuesses.indexOf(null);
-      
-      if (currentGuess.length < wordLength || !words.includes(currentGuess.toUpperCase())) {
+
+      if (currentGuess.length < wordLength || !wordList.includes(currentGuess)) {
         const currentLineElement = currentGuessIndex !== -1 ? document.getElementById(`input-line-${currentGuessIndex + 1}`) : null;
         if (currentLineElement && !currentLineElement.classList.contains('active')) {
           currentLineElement.classList.add('active');
@@ -29,13 +29,19 @@ export function Keyboard({ currentGuess, setCurrentGuess, guesses, setGuesses })
       setGuesses(newGuesses);
     }
 
-    console.log(correctGuess);
     const rows = keyboardChars.map(line => {
-      return <KeyboardLine key={line} line={line} setCurrentGuess={setCurrentGuess} submitWord={submitWord} />;
+      return <KeyboardLine
+        key={line}
+        line={line}
+        setCurrentGuess={setCurrentGuess}
+        submitWord={submitWord}
+        guesses={guesses}
+        keyboardColors={keyboardColors}
+      />;
     });
     setKeyboardRows(rows);
     let keysPressed = [];
-    
+
     const handleKeyDownEvent = event => {
       const key = event.key.length === 1 ? event.key.toUpperCase() : event.key;
       const element = document.querySelector(`[data-key="${key}"]`);
@@ -71,7 +77,7 @@ export function Keyboard({ currentGuess, setCurrentGuess, guesses, setGuesses })
       window.removeEventListener('keydown', handleKeyDownEvent);
       window.removeEventListener('keyup', handleKeyUpEvent);
     };
-  }, [currentGuess]);
+  }, [currentGuess, keyboardColors]);
 
   return (
     <div id="keyboard">

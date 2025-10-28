@@ -21,11 +21,15 @@
 }
 
 .board-square.correct {
-  background-color: green;
+  background-color: var(--correct-clr);
 }
 
 .board-square.misplaced {
-  background-color: rgb(160, 136, 0);
+  background-color: var(--misplaced-clr);
+}
+
+.board-square.incorrect {
+  background-color: var(--incorrect-clr);
 }
 
 @keyframes square-pop {

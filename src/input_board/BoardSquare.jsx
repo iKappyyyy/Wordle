@@ -1,4 +1,3 @@
-import { correctGuess } from '../constants/generalConstants';
 import './BoardSquare.css';
 
 export function BoardSquare({ char, position }) {
@@ -11,12 +10,8 @@ export function BoardSquare({ char, position }) {
     );
   }
 
-  if (char === '' || char === undefined) classes += ' active';
-  if (char === correctGuess[position]) classes += ' correct';
-  else if (correctGuess.includes(char) && (char !== '' || char === undefined)) classes += ' misplaced';
-
   return (
-    <div className={classes}>
+    <div className={`board-square${!(char === '' || char === undefined) ? ' active' : ''} ${position}`}>
       {char}
     </div>
   );

@@ -1,3 +1,9 @@
 * {
   color: white;
 }
+
+:root {
+  --correct-clr: green;
+  --misplaced-clr: rgb(160, 136, 0);
+  --incorrect-clr: rgb(71, 71, 71);
+}
